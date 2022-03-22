@@ -1,0 +1,43 @@
+{
+    "name": "nexus4812/jr-ddd",
+    "autoload": {
+        "psr-4": {
+            "JrPriceDomain\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "illuminate/collections": "^8.80"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.4.2",
+        "friendsofphp/php-cs-fixer": "^3.7",
+        "jetbrains/phpstorm-attributes": "^1.0",
+        "phpunit/phpunit": "^9.5",
+        "mockery/mockery": "^1.5"
+    },
+
+    "scripts": {
+        "stan": [
+            "vendor/bin/phpstan analyse -l max src tests"
+        ],
+
+        "fixer": [
+            "vendor/bin/php-cs-fixer fix src --rules=@Symfony,@PhpCsFixer,@PHP80Migration,declare_strict_types --allow-risky=yes"
+        ],
+
+        "unit": [
+            "php vendor/phpunit/phpunit/phpunit"
+        ],
+
+        "check": [
+            "composer fixer",
+            "composer stan",
+            "composer unit"
+        ]
+    }
+}
